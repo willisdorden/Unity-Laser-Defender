@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour {
     private float xmax;
     private float ymin = -4.5f;
     private float ymax = -1.66f;
+    public float laserSpeed;
+    public GameObject Laser;
+
+    public float firingRate = 0.2f;
     // Use this for initialization
     void Start ()
     {
@@ -39,6 +43,15 @@ public class PlayerController : MonoBehaviour {
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InvokeRepeating("Fire", 0.000001f, firingRate);
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            CancelInvoke("Fire");
+        }
+        
         // restricts the player to the gamespace.
         float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
@@ -46,8 +59,11 @@ public class PlayerController : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, newY , transform.position.z);
     }
 
-    void MoveWithArrow()
+    void Fire ()
     {
-		
+        
+            GameObject beam = Instantiate(Laser, transform.position, Quaternion.identity) as GameObject;
+            beam.GetComponent<Rigidbody2D>().velocity = new Vector3(0,laserSpeed,0);
+        
     }
 }
