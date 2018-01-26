@@ -14,9 +14,8 @@ public class enemy : MonoBehaviour
 	private float xmax;
 	public float padding = .5f;
 	private bool dirRight = true;
-
 	public float speed = 5.0f;
-
+   
 	// Use this for initialization
 	void Start()
 	{
@@ -58,8 +57,6 @@ public class enemy : MonoBehaviour
 		{
 			dirRight = false;
 		}
-
-
 
 	}
 }

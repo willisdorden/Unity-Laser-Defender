@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private float ymax = -1.66f;
     public float laserSpeed;
     public GameObject Laser;
+    public float health = 300;
 
     public float firingRate = 0.2f;
     // Use this for initialization
@@ -63,9 +64,24 @@ public class PlayerController : MonoBehaviour {
 
     void Fire ()
     {
-        
-            GameObject beam = Instantiate(Laser, transform.position, Quaternion.identity) as GameObject;
+            Vector3 offset = new Vector3(0,1,0);
+            GameObject beam = Instantiate(Laser, transform.position+offset, Quaternion.identity) as GameObject;
             beam.GetComponent<Rigidbody2D>().velocity = new Vector3(0,laserSpeed,0);
         
+    }
+    
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        EnemyProjectile missile = collider.gameObject.GetComponent<EnemyProjectile>();
+        if (missile)
+        {
+            health -= missile.getDamage();
+            missile.Hit();
+            if (health <=0)
+            {
+                Destroy(gameObject);
+            }
+        }
+		
     }
 }
