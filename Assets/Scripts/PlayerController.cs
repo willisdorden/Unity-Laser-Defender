@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour {
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
         float newY = Mathf.Clamp(transform.position.y, ymin, ymax);
         transform.position = new Vector3(transform.position.x, newY , transform.position.z);
+        
+        
     }
 
     void Fire ()
