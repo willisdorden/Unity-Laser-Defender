@@ -15,6 +15,7 @@ public class enemy : MonoBehaviour
 	public float padding = .5f;
 	private bool dirRight = true;
 	public float speed = 5.0f;
+	public float spawnDelay = 0.5f;
    
 	// Use this for initialization
 	void Start()
@@ -24,7 +25,7 @@ public class enemy : MonoBehaviour
 		Vector3 Rightmost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance));
 		xmin = leftmost.x;
 		xmax = Rightmost.x;
-		SpawnEnemies();
+		SpawnUntilFull();
 	}
 
 	void SpawnEnemies()
@@ -36,6 +37,19 @@ public class enemy : MonoBehaviour
 		}
 	}
 
+	void SpawnUntilFull()
+	{
+		Transform freePosition = NextFreePosition();
+		if (freePosition)
+		{
+			GameObject enemy = Instantiate(enemyPrefab, freePosition.position, Quaternion.identity) as GameObject;
+			enemy.transform.parent = freePosition;
+		}
+		if (NextFreePosition())
+		{
+			Invoke("SpawnUntilFull", spawnDelay);
+		}
+	}
 	public void OnDrawGizmos()
 	{
 		Gizmos.DrawWireCube(transform.position, new Vector3(width, height));
@@ -65,7 +79,7 @@ public class enemy : MonoBehaviour
 		if (AllMembersDead())
 		{
 			Debug.Log("Empty Formation");
-			SpawnEnemies();
+			SpawnUntilFull();
 		}
 	}
 
@@ -75,9 +89,22 @@ public class enemy : MonoBehaviour
 		{
 			if (childPositionGameObject.childCount > 0)
 			{
-				return false;
+				return false ;
 			}
 		}
 		return true;
 	}
+
+	Transform NextFreePosition()
+	{
+		foreach (Transform childPositionGameObject in transform)
+		{
+			if (childPositionGameObject.childCount == 0)
+			{
+				return childPositionGameObject;
+			}
+		}
+		return null;
+	}
+	
 }
