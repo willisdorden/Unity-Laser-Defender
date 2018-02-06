@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 212888760047346944}
   - component: {fileID: 50700602376263368}
   - component: {fileID: 61551515798231828}
-  m_Layer: 0
+  - component: {fileID: 114503393781005366}
+  m_Layer: 11
   m_Name: laserRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.09, y: 0.37}
   m_EdgeRadius: 0
+--- !u!114 &114503393781005366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967139405840472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18903221931c4c67988e822627a8104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
 --- !u!212 &212888760047346944
 SpriteRenderer:
   m_ObjectHideFlags: 1
