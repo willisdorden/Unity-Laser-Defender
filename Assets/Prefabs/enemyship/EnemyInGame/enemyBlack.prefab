@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50609696375159212}
   - component: {fileID: 61251303288838292}
   - component: {fileID: 114299648992371126}
+  - component: {fileID: 95281205067476210}
   m_Layer: 9
   m_Name: enemyBlack
   m_TagString: Untagged
@@ -88,6 +89,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.93, y: 0.84}
   m_EdgeRadius: 0
+--- !u!95 &95281205067476210
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1253504739777450}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 197679d1e31204941a423b93aeb3f95d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114299648992371126
 MonoBehaviour:
   m_ObjectHideFlags: 1
